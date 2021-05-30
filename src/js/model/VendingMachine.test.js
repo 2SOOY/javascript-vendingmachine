@@ -123,4 +123,99 @@ describe('잔돈 반환', () => {
 
     expect(vendingMachine.chargedMoney).toEqual(0);
   });
+
+  it('잔돈은 최소 개수의 동전으로 반환된다.', () => {
+    const TC = [
+      {
+        input: '40660',
+        change: {
+          500: 81,
+          100: 1,
+          50: 1,
+          10: 1,
+        },
+      },
+      {
+        input: 10,
+        change: {
+          500: 0,
+          100: 0,
+          50: 0,
+          10: 1,
+        },
+      },
+      {
+        input: 50,
+        change: {
+          500: 0,
+          100: 0,
+          50: 1,
+          10: 0,
+        },
+      },
+      {
+        input: '1000',
+        change: {
+          500: 2,
+          100: 0,
+          50: 0,
+          10: 0,
+        },
+      },
+      {
+        input: 20,
+        change: {
+          500: 0,
+          100: 0,
+          50: 0,
+          10: 2,
+        },
+      },
+      {
+        input: '600',
+        change: {
+          500: 1,
+          100: 1,
+          50: 0,
+          10: 0,
+        },
+      },
+      {
+        input: '650',
+        change: {
+          500: 1,
+          100: 1,
+          50: 1,
+          10: 0,
+        },
+      },
+      {
+        input: '11',
+        change: {
+          500: 0,
+          100: 0,
+          50: 0,
+          10: 1,
+        },
+      },
+      {
+        input: '659',
+        change: {
+          500: 1,
+          100: 1,
+          50: 1,
+          10: 0,
+        },
+      },
+    ];
+
+    TC.forEach(({ input, change }) => {
+      vendingMachine.input(input);
+      const result = vendingMachine.change();
+
+      Object.keys(vendingMachine.coins).forEach((price) => {
+        expect(result[price]).toEqual(change[price]);
+      });
+    });
+  });
 });

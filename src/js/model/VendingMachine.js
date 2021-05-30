@@ -3,10 +3,18 @@ import mockProducts from '../../../data';
 const MIN_INPUT = 10;
 const MAX_INPUT = 50000;
 
+const getQuotient = (dividend, divisor) => Math.floor(dividend / divisor);
+
 class VendingMachine {
   constructor(products = mockProducts) {
     this.chargedMoney = 0;
     this.products = products;
+    this.coins = {
+      500: Infinity,
+      100: Infinity,
+      50: Infinity,
+      10: Infinity,
+    };
   }
 
   input(value) {
@@ -35,7 +43,19 @@ class VendingMachine {
   }
 
   change() {
+    const changeResult = {};
+
+    Object.entries(this.coins)
+      .sort((a, b) => b[0] - a[0])
+      .forEach(([price, quantity]) => {
+        const quotient = getQuotient(this.chargedMoney, price);
+        this.coins[price] -= quantity;
+        this.chargedMoney -= quotient * price;
+        changeResult[price] = quotient;
+      });
+
     this.chargedMoney = 0;
+    return changeResult;
   }
 }
 
