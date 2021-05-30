@@ -115,5 +115,17 @@ describe('잔돈 반환', () => {
 
       expect(cnt).toEqual(1);
     });
+
+    it('상품을 삭제할 수 있다.', () => {
+      const existedProductName = vendingMachine.products[0].name;
+
+      vendingMachine.removeProduct(existedProductName);
+
+      expect(
+        vendingMachine.products
+          .map(({ name }) => name)
+          .includes(existedProductName)
+      ).toEqual(false);
+    });
   });
 });

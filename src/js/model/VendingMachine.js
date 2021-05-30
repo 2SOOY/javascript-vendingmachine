@@ -63,6 +63,8 @@ class VendingMachine {
 
   addProduct({ name, price }) {
     // TODO 공백도 허용하지 않는다고 적어놔야할듯
+    // TODO: 15라인 이내로 줄이기
+    // TODO: 정규식 상수화 하기
     if (!new RegExp(/^[가-힣]{2,20}$/).test(name)) {
       window.alert('잘못된 형식의 상품이름입니다.');
 
@@ -80,6 +82,20 @@ class VendingMachine {
     }
 
     this.products.push({ name, price });
+  }
+
+  removeProduct(name) {
+    const targetIndex = this.products.findIndex(
+      (product) => product.name === name
+    );
+
+    if (targetIndex === -1) {
+      window.alert('존재하지 않는 상품입니다.');
+
+      return;
+    }
+
+    this.products.splice(targetIndex, 1);
   }
 }
 
