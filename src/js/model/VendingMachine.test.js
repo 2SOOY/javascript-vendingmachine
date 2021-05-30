@@ -1,12 +1,16 @@
 /* eslint-disable max-lines-per-function */
+import { JSDOM } from 'jsdom';
 import VendingMachine from './VendingMachine';
+
+const { window } = new JSDOM();
+global.window = window;
 
 let vendingMachine;
 
-// jest.spyOn(window, 'alert').mockImplementation(() => {});
-// jest.spyOn(window, 'confirm').mockImplementation(() => {});
-describe('Vending Machine 단위 테스트', () => {
+describe('금액 충전', () => {
   beforeEach(() => {
+    window.alert = () => true; // window.alert만 막을 수 있고, alert은 못막음
+
     vendingMachine = new VendingMachine();
   });
 
@@ -80,5 +84,29 @@ describe('Vending Machine 단위 테스트', () => {
 
       expect(Number(vendingMachine.chargedMoney)).toEqual(answer);
     });
+  });
+});
+
+describe('상품 구매', () => {
+  beforeEach(() => {
+    vendingMachine = new VendingMachine();
+  });
+
+  it('사용자는 상품을 구매를 할 수 있다.', () => {
+    const targetProduct = vendingMachine.products[0];
+
+    vendingMachine.input(targetProduct.price);
+    vendingMachine.purchase(targetProduct.name);
+
+    expect(vendingMachine.chargedMoney).toEqual(0);
+  });
+
+  it('구매하려는 상품의 금액이 잔액보다 작으면 구매할 수 없다.', () => {
+    const targetProduct = vendingMachine.products[0];
+
+    vendingMachine.input(targetProduct.price - 1);
+    vendingMachine.purchase(targetProduct.name);
+
+    expect(vendingMachine.chargedMoney).toEqual(targetProduct.price - 1);
   });
 });
