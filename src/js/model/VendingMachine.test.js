@@ -110,3 +110,17 @@ describe('상품 구매', () => {
     expect(vendingMachine.chargedMoney).toEqual(targetProduct.price - 1);
   });
 });
+
+describe('잔돈 반환', () => {
+  beforeEach(() => {
+    vendingMachine = new VendingMachine();
+  });
+
+  it('잔돈이 반환되면 충전 금액이 0으로 초기화된다.', () => {
+    vendingMachine.input(40000);
+
+    vendingMachine.change();
+
+    expect(vendingMachine.chargedMoney).toEqual(0);
+  });
+});

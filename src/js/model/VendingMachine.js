@@ -33,6 +33,10 @@ class VendingMachine {
 
     this.chargedMoney -= targetProduct.price;
   }
+
+  change() {
+    this.chargedMoney = 0;
+  }
 }
 
 export default VendingMachine;
