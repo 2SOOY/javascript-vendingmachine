@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,24 @@
   },
   "homepage": "https://github.com/2SOOY/javascript-vendingmachine#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-block-scoping": "^7.14.4",
+    "@babel/plugin-transform-object-assign": "^7.12.13",
+    "@babel/plugin-transform-regenerator": "^7.13.15",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/plugin-transform-strict-mode": "^7.12.13",
+    "@babel/plugin-transform-template-literals": "^7.13.0",
+    "@babel/preset-env": "^7.14.4",
+    "@testing-library/dom": "^7.31.0",
+    "@testing-library/jest-dom": "^5.12.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^7.27.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.4"
+    "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.3",
+    "jest-dom": "^4.0.0",
+    "jsdom": "^16.6.0"
   }
 }

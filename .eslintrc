@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": ["airbnb-base"],
   "parserOptions": {
@@ -9,6 +10,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "max-lines-per-function": ["error", { "max": 15 }]
+    "max-lines-per-function": ["error", { "max": 15 }],
+    "comma-dangle": "off"
   }
 }
