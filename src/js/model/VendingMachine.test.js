@@ -46,4 +46,39 @@ describe('Vending Machine 단위 테스트', () => {
       expect(Number(vendingMachine.chargedMoney)).toEqual(answer);
     });
   });
+
+  it('사용자는 금액 충전을 누적으로 할 수 있다.', () => {
+    const TC = [
+      {
+        input: '5',
+        answer: 0,
+      },
+      {
+        input: '5',
+        answer: 0,
+      },
+      {
+        input: 10000,
+        answer: 10000,
+      },
+      {
+        input: '30000',
+        answer: 40000,
+      },
+      {
+        input: '10000',
+        answer: 50000,
+      },
+      {
+        input: '50001',
+        answer: 50000,
+      },
+    ];
+
+    TC.forEach(({ input, answer }) => {
+      vendingMachine.input(input);
+
+      expect(Number(vendingMachine.chargedMoney)).toEqual(answer);
+    });
+  });
 });
