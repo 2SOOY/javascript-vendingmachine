@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import mockProducts from '../../../data.js';
 
 const MIN_INPUT = 10;
@@ -12,6 +13,7 @@ class VendingMachine {
     // TODO: 초기값 해주는건 테스트코드로 빼야하나?
     this.chargedMoney = 0;
     this.products = products;
+    this.order = {};
     this.coins = {
       500: Infinity,
       100: Infinity,
@@ -43,6 +45,11 @@ class VendingMachine {
     }
 
     this.chargedMoney -= targetProduct.price;
+    if (this.order[targetProduct.name]) {
+      this.order[targetProduct.name] += 1;
+    } else {
+      this.order[targetProduct.name] = 1;
+    }
   }
 
   change() {

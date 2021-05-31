@@ -3,17 +3,11 @@ import VendingMachine from '../model/VendingMachine.js';
 import { $ } from '../utils/index.js';
 import PurchasePage from './PurchasePage.js';
 
-export const vendingMachine = new VendingMachine();
+const vendingMachine = new VendingMachine();
 
 class App {
   constructor($target) {
     this.$target = $target;
-  }
-
-  selectDOM() {
-    this.$productPurchaseMenuButton = $(`#${MENU.PRODUCT_PURCHASE}`);
-    this.$productManageMenuButton = $(`#${MENU.PRODUCT_MANAGE}`);
-    this.$main = $('#main');
   }
 
   run() {
@@ -25,12 +19,6 @@ class App {
     this.selectDOM();
     this.mount();
     this.bindEvent();
-  }
-
-  bindEvent() {
-    this.$productPurchaseMenuButton.addEventListener('click', () => {
-      this.$PurchasePage.setup();
-    });
   }
 
   initRender() {
@@ -45,8 +33,20 @@ class App {
       <main id="main"></main>`;
   }
 
+  selectDOM() {
+    this.$productPurchaseMenuButton = $(`#${MENU.PRODUCT_PURCHASE}`);
+    this.$productManageMenuButton = $(`#${MENU.PRODUCT_MANAGE}`);
+    this.$main = $('#main');
+  }
+
   mount() {
-    this.$PurchasePage = new PurchasePage(this.$main);
+    this.$purchasePage = new PurchasePage(this.$main, { vendingMachine });
+  }
+
+  bindEvent() {
+    this.$productPurchaseMenuButton.addEventListener('click', () => {
+      this.$purchasePage.setup();
+    });
   }
 }
 
