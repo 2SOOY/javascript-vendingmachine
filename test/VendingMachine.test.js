@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import { JSDOM } from 'jsdom';
-import VendingMachine from './VendingMachine';
-import CHANGE_TC from '../../../fixture/change';
+import ADD_PRODUCT_TC from '../fixture/addProduct';
+import CHANGE_TC from '../fixture/change';
 import {
   TC_ACC as CHARGE_TC_ACC,
   TC_NONE_ACC as CHARGE_TC__NONE_ACC,
-} from '../../../fixture/charge';
-import ADD_PRODUCT_TC from '../../../fixture/addProduct';
+} from '../fixture/charge';
+import VendingMachine from '../src/js/model/VendingMachine';
 
 const { window } = new JSDOM();
 global.window = window;

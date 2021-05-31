@@ -1,7 +1,16 @@
-class VendingMachine {
-  constructor() {}
-}
+import App from './components/App.js';
+import { $ } from './utils/index.js';
 
-const init = () => {};
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new App($('#app'));
 
-init();
+  app.run();
+});
+
+// const init = () => {
+//   const vendingMachine = new VendingMachine();
+
+//   vendingMachine.input(0);
+// };
+
+// init();

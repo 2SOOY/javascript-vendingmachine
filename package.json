@@ -1,7 +1,7 @@
 {
   "name": "javascript-vendingmachine",
   "version": "1.0.0",
-  "description": "## 📌 구현 목록",
+  "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -39,5 +39,6 @@
     "jest": "^27.0.3",
     "jest-dom": "^4.0.0",
     "jsdom": "^16.6.0"
-  }
+  },
+  "type": "module"
 }

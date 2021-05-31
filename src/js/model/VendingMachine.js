@@ -1,4 +1,4 @@
-import mockProducts from '../../../data';
+import mockProducts from '../../../data.js';
 
 const MIN_INPUT = 10;
 const MAX_INPUT = 50000;
