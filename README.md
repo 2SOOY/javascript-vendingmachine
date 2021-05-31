@@ -1,8 +1,8 @@
 # 프론트엔드 자판기 미션
 
-## 📌 구현 목록
+## 📌구현 목록
 
-### 상**품 구매 페이지**
+### 상품 구매 페이지
 
 **금액 충전**
 
@@ -40,13 +40,13 @@
     - [ ] 1원이 남아 있다면 동전을 돌려주지 않는다.
     - [ ] 659원이 남아 있다면 500원 동전 1개와 100원 동전 1와 50원 동전 1개를 돌려준다.
 
-### 상**품 관리 페이지**
+### 상품 관리 페이지
 
 **상품 조회**
 
 - [ ] 최초 상품 목록은 다음과 같은 형식으로 주어진다.
 
-  ```tsx
+  ```js
   // data.js
 
   const products = [
@@ -84,37 +84,37 @@
 
 **메뉴 버튼**
 
-    - [ ]  상품 구매 button 태그는 `product-purchase-menu`  id값을 가진다.
-    - [ ]  상품 관리 button 태그는 `product-manage-menu` id값을 가진다.
+- [ ] 상품 구매 button 태그는 `product-purchase-menu` id값을 가진다.
+- [ ] 상품 관리 button 태그는 `product-manage-menu` id값을 가진다.
 
 **금액 충전**
 
-    - [ ]  금액 충전 input 태그는 `charge-input` id값을 가진다.
-    - [ ]  금액 충전 button태그는 `charge-button` id값을 가진다.
-    - [ ]  충전 금액 span 태그는 `charge-amount` id값을 가진다.
+- [ ] 금액 충전 input 태그는 `charge-input` id값을 가진다.
+- [ ] 금액 충전 button태그는 `charge-button` id값을 가진다.
+- [ ] 충전 금액 span 태그는 `charge-amount` id값을 가진다.
 
 **상품 구매**
 
-    - [ ]  상품 구매 상품 이름 td태그는 `product-purchase-name` class를 가진다.
-    - [ ]  상품 구매 상품 가격 td태그는 `product-purchase-price` class를 가진다.
-    - [ ]  상품 구매하기 button 태그는  `purchase-button` class를 가진다.
+- [ ] 상품 구매 상품 이름 td태그는 `product-purchase-name` class를 가진다.
+- [ ] 상품 구매 상품 가격 td태그는 `product-purchase-price` class를 가진다.
+- [ ] 상품 구매하기 button 태그는 `purchase-button` class를 가진다.
 
-    - [ ]  구매 현황의 상품목록 태그는 `purchased-item` class 값을 가진다.
-    - [ ]  반환하기 button 태그는 `coin-return-button` id값을 가진다.
+- [ ] 구매 현황의 상품목록 태그는 `purchased-item` class 값을 가진다.
+- [ ] 반환하기 button 태그는 `coin-return-button` id값을 가진다.
 
-    - [ ]  잔돈 500원 수량 태그는 `coin-500-quantity` id값을 가진다.
-    - [ ]  잔돈 100원 수량 태그는 `coin-100-quantity` id값을 가진다.
-    - [ ]  잔돈 50원 수량 태그는 `coin-50-quantity` id값을 가진다.
-    - [ ]  잔돈 10원 수량 태그는 `coin-10-quantity` id값을 가진다.
+- [ ] 잔돈 500원 수량 태그는 `coin-500-quantity` id값을 가진다.
+- [ ] 잔돈 100원 수량 태그는 `coin-100-quantity` id값을 가진다.
+- [ ] 잔돈 50원 수량 태그는 `coin-50-quantity` id값을 가진다.
+- [ ] 잔돈 10원 수량 태그는 `coin-10-quantity` id값을 가진다.
 
 **상품 관리**
 
-    - [ ]  상품 추가 이름 input 태그는 `product-name-input` id값을 가진다.
-    - [ ]  상품 추가 가격 input 태그는 `product-price-input` id값을 가진다.
-    - [ ]  상품 추가 button 태그는 `product-add-button` id값을 가진다.
-    - [ ]  상품 목록 이름 태그는 `product-manage-name` class값을 가진다.
-    - [ ]  상품 목록 가격 태그는 `product-manage-price` class값을 가진다.
-    - [ ]  상품 목록 삭제 버튼 button 태그는 `delete-button` class값을 가진다.
+- [ ] 상품 추가 이름 input 태그는 `product-name-input` id값을 가진다.
+- [ ] 상품 추가 가격 input 태그는 `product-price-input` id값을 가진다.
+- [ ] 상품 추가 button 태그는 `product-add-button` id값을 가진다.
+- [ ] 상품 목록 이름 태그는 `product-manage-name` class값을 가진다.
+- [ ] 상품 목록 가격 태그는 `product-manage-price` class값을 가진다.
+- [ ] 상품 목록 삭제 버튼 button 태그는 `delete-button` class값을 가진다.
 
 **기타 요구 사항**
 
