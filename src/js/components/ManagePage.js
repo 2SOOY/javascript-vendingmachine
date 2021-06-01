@@ -5,7 +5,6 @@ import {
 } from '../constant.js';
 import { $ } from '../utils/index.js';
 
-/* eslint-disable max-lines-per-function */
 class ManagePage {
   constructor($target, $props) {
     this.$target = $target;
@@ -27,7 +26,7 @@ class ManagePage {
                 <tr>
                     <td class="${PRODUCT_LIST.NAME}">${product.name}</td>
                     <td class="${PRODUCT_LIST.PRICE}">${product.price}원</td>
-                    <td><button class="${PRODUCT_DELETE_BUTTON}">삭제</button></td>
+                    <td><button data-item-name="${product.name}" class="${PRODUCT_DELETE_BUTTON}">삭제</button></td>
                 </tr>
         `;
       })

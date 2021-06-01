@@ -1,5 +1,5 @@
-/* eslint-disable max-lines-per-function */
 import mockProducts from '../../../data.js';
+import { getLocalStorageItem, setLocalStorageItem } from '../utils/index.js';
 
 const MIN_INPUT = 10;
 const MAX_INPUT = 50000;
@@ -12,7 +12,6 @@ class VendingMachine {
   constructor(products = mockProducts) {
     // TODO: 초기값 해주는건 테스트코드로 빼야하나?
     this.chargedMoney = 0;
-    this.products = products;
     this.order = {};
     this.coins = {
       500: Infinity,
@@ -20,6 +19,12 @@ class VendingMachine {
       50: Infinity,
       10: Infinity,
     };
+    if (getLocalStorageItem('products')) {
+      this.products = getLocalStorageItem('products');
+    } else {
+      this.products = products;
+      setLocalStorageItem('products', products);
+    }
   }
 
   input(value) {
@@ -72,6 +77,7 @@ class VendingMachine {
     // TODO 공백도 허용하지 않는다고 적어놔야할듯
     // TODO: 15라인 이내로 줄이기
     // TODO: 정규식 상수화 하기
+    // TODO: 모델에 존재해기 or 페이지 컴포넌트로 빼기
     if (!new RegExp(/^[가-힣]{2,20}$/).test(name)) {
       window.alert('잘못된 형식의 상품이름입니다.');
 
@@ -89,6 +95,8 @@ class VendingMachine {
     }
 
     this.products.push({ name, price });
+
+    setLocalStorageItem('products', this.products);
   }
 
   removeProduct(name) {
@@ -105,6 +113,7 @@ class VendingMachine {
     if (!window.confirm('정말로 삭제하시겠습니까?')) return;
 
     this.products.splice(targetIndex, 1);
+    setLocalStorageItem('products', this.products);
   }
 }
 
