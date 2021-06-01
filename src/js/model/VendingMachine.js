@@ -50,7 +50,7 @@ class VendingMachine {
         this.chargedMoney -= quotient * price;
         changeResult[price] = quotient;
       });
-
+    this.order = {};
     this.chargedMoney = 0;
     return changeResult;
   }

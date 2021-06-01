@@ -23,8 +23,11 @@ class PurchasePage {
     this.renderPurchasedItem();
   }
 
+  // eslint-disable-next-line max-lines-per-function
   renderPurchasedItem() {
-    this.$purchasedItemList.innerHTML = `
+    this.$purchasedItemList.innerHTML =
+      Object.keys(this.vendingMachine.order).length > 0
+        ? `
         ${Object.keys(this.vendingMachine.order)
           .map((name) => {
             return `
@@ -35,7 +38,8 @@ class PurchasePage {
               `;
           })
           .join('')}
-        `;
+      `
+        : '<p>구매한 상품이 없습니다.</p>';
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -91,34 +95,37 @@ class PurchasePage {
         </ul>
     </div>
 
-    <button id="${CHANGE_BUTTON}" type="button">반환하기</button>
-              
-    <table id="change-result-container" border="1">
-        <thead>
-            <tr>
-            <th>동전</th>
-            <th>개수</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>500원</td>
-                <td id="${QUANTITY_OF_COIN[500]}">0</td>
-            </tr>
-            <tr>
-                <td>100원</td>
-                <td id="${QUANTITY_OF_COIN[100]}">0</td>
-            </tr>
-            <tr>
-                <td>50원</td>
-                <td id="${QUANTITY_OF_COIN[50]}">0</td>
-            </tr>
-            <tr>
-                <td>10원</td>
-                <td id="${QUANTITY_OF_COIN[10]}">0</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+      <h3>반환하기</h3>
+      <button id="${CHANGE_BUTTON}" type="button">반환하기</button>
+                
+      <table id="change-result-container" border="1">
+          <thead>
+              <tr>
+              <th>동전</th>
+              <th>개수</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>500원</td>
+                  <td id="${QUANTITY_OF_COIN[500]}">0</td>
+              </tr>
+              <tr>
+                  <td>100원</td>
+                  <td id="${QUANTITY_OF_COIN[100]}">0</td>
+              </tr>
+              <tr>
+                  <td>50원</td>
+                  <td id="${QUANTITY_OF_COIN[50]}">0</td>
+              </tr>
+              <tr>
+                  <td>10원</td>
+                  <td id="${QUANTITY_OF_COIN[10]}">0</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
 </div>
     `;
   }
@@ -200,6 +207,7 @@ class PurchasePage {
 
     this.$chargeInput.value = 0;
     this.$chargeAmount.textContent = 0;
+    this.renderPurchasedItem();
 
     this.$coin500Amount.textContent = result[500];
     this.$coin100Amount.textContent = result[100];
