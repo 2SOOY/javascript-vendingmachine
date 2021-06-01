@@ -3,7 +3,7 @@ import {
   PRODUCT_DELETE_BUTTON,
   PRODUCT_LIST,
 } from '../constant.js';
-import { $ } from '../utils/index.js';
+import { $, isValidMoneyInput } from '../utils/index.js';
 
 class ManagePage {
   constructor($target, $props) {
@@ -92,11 +92,31 @@ class ManagePage {
     );
   }
 
+  // eslint-disable-next-line max-lines-per-function
   onSubmitProductInfo(event) {
     event.preventDefault();
 
     const nameInputValue = this.$productNameInput.value;
     const priceInputValue = Number(this.$productPriceInput.value);
+
+    // TODO 공백도 허용하지 않는다고 적어놔야할듯
+    // TODO: 15라인 이내로 줄이기
+    // TODO: 정규식 상수화 하기
+    if (!new RegExp(/^[가-힣]{2,20}$/).test(nameInputValue)) {
+      window.alert('잘못된 형식의 상품이름입니다.');
+
+      return;
+    }
+    if (!isValidMoneyInput(priceInputValue)) {
+      window.alert('가격은 10원이상 50000원 이하여야 합니다.');
+
+      return;
+    }
+    if (this.products.map(({ name }) => name).includes(nameInputValue)) {
+      window.alert('중복된 상품입니다.');
+
+      return;
+    }
 
     this.vendingMachine.addProduct({
       name: nameInputValue,
@@ -106,11 +126,23 @@ class ManagePage {
     this.renderProductItemList();
   }
 
+  // eslint-disable-next-line max-lines-per-function
   onClickProductDeleteButton(event) {
     if (!event.target.dataset.itemName) return;
-
     const { itemName } = event.target.dataset;
-    this.vendingMachine.removeProduct(itemName);
+    const targetIndex = this.vendingMachine.products.findIndex(
+      (product) => product.name === itemName
+    );
+
+    if (targetIndex === -1) {
+      window.alert('존재하지 않는 상품입니다.');
+
+      return;
+    }
+
+    if (!window.confirm('정말로 삭제하시겠습니까?')) return;
+
+    this.vendingMachine.removeProduct(targetIndex);
 
     this.renderProductItemList();
   }

@@ -1,10 +1,5 @@
 /* eslint-disable prefer-destructuring */
 
-const MIN_INPUT = 10;
-const MAX_INPUT = 50000;
-
-const isValidMoneyInput = (value) => MIN_INPUT <= value && value <= MAX_INPUT;
-
 import {
   CHANGE_BUTTON,
   CHARGE,
@@ -12,7 +7,7 @@ import {
   PURCHASED_PRODUCT,
   QUANTITY_OF_COIN,
 } from '../constant.js';
-import { $ } from '../utils/index.js';
+import { $, isValidMoneyInput } from '../utils/index.js';
 
 class PurchasePage {
   constructor($target, $props) {
@@ -133,7 +128,7 @@ class PurchasePage {
     this.$chargeInputContainer = $('#charge-input-container');
     this.$chargeInput = $(`#${CHARGE.INPUT}`);
     this.$chargeButton = $(`#${CHARGE.BUTTON}`);
-    this.$chargeAmountText = $(`#${CHARGE.AMOUNT}`);
+    this.$chargeAmount = $(`#${CHARGE.AMOUNT}`);
 
     this.$sellItemContainer = $('#sell-item-container');
 
@@ -179,7 +174,7 @@ class PurchasePage {
     this.vendingMachine.input(inputValue);
 
     this.$chargeInput.value = '';
-    this.$chargeAmountText.textContent = this.vendingMachine.chargedMoney;
+    this.$chargeAmount.textContent = this.vendingMachine.chargedMoney;
   }
 
   onClickPurchaseButton(event) {
@@ -194,7 +189,7 @@ class PurchasePage {
       return;
     }
     this.vendingMachine.purchase(targetProduct);
-    this.$chargeAmountText.textContent = this.vendingMachine.chargedMoney;
+    this.$chargeAmount.textContent = this.vendingMachine.chargedMoney;
     this.renderPurchasedItem();
   }
 
@@ -204,6 +199,7 @@ class PurchasePage {
     window.alert('반환되었습니다.');
 
     this.$chargeInput.value = 0;
+    this.$chargeAmount.textContent = 0;
 
     this.$coin500Amount.textContent = result[500];
     this.$coin100Amount.textContent = result[100];
