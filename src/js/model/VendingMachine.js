@@ -1,24 +1,21 @@
 import mockProducts from '../../../data.js';
 import { getLocalStorageItem, setLocalStorageItem } from '../utils/index.js';
 
-const MIN_INPUT = 10;
-const MAX_INPUT = 50000;
-
-const isValidMoneyInput = (value) => MIN_INPUT <= value && value <= MAX_INPUT;
-
 const getQuotient = (dividend, divisor) => Math.floor(dividend / divisor);
+
+const initCoinState = {
+  500: Infinity,
+  100: Infinity,
+  50: Infinity,
+  10: Infinity,
+};
 
 class VendingMachine {
   constructor(products = mockProducts) {
     // TODO: 초기값 해주는건 테스트코드로 빼야하나?
     this.chargedMoney = 0;
     this.order = {};
-    this.coins = {
-      500: Infinity,
-      100: Infinity,
-      50: Infinity,
-      10: Infinity,
-    };
+    this.coins = initCoinState;
     if (getLocalStorageItem('products')) {
       this.products = getLocalStorageItem('products');
     } else {
@@ -29,26 +26,11 @@ class VendingMachine {
 
   input(value) {
     const inputValue = Number(value);
-    if (!isValidMoneyInput(inputValue)) {
-      window.alert('충전할 수 없습니다.');
-
-      return;
-    }
 
     this.chargedMoney += inputValue;
   }
 
-  purchase(productName) {
-    const targetProduct = this.products.find(
-      (product) => product.name === productName
-    );
-
-    if (this.chargedMoney < targetProduct.price) {
-      window.alert('구매할 수 없습니다.');
-
-      return;
-    }
-
+  purchase(targetProduct) {
     this.chargedMoney -= targetProduct.price;
     if (this.order[targetProduct.name]) {
       this.order[targetProduct.name] += 1;

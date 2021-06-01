@@ -33,6 +33,7 @@ class ManagePage {
       .join('')}`;
   }
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     this.$target.innerHTML = `
         <div>
@@ -101,10 +102,7 @@ class ManagePage {
       name: nameInputValue,
       price: priceInputValue,
     });
-
-    this.$productNameInput.value = '';
-    this.$productPriceInput.value = '';
-
+    this.resetForm();
     this.renderProductItemList();
   }
 
@@ -115,6 +113,11 @@ class ManagePage {
     this.vendingMachine.removeProduct(itemName);
 
     this.renderProductItemList();
+  }
+
+  resetForm() {
+    this.$productNameInput.value = '';
+    this.$productPriceInput.value = '';
   }
 }
 

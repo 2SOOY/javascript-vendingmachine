@@ -1,5 +1,10 @@
 /* eslint-disable prefer-destructuring */
-/* eslint-disable max-lines-per-function */
+
+const MIN_INPUT = 10;
+const MAX_INPUT = 50000;
+
+const isValidMoneyInput = (value) => MIN_INPUT <= value && value <= MAX_INPUT;
+
 import {
   CHANGE_BUTTON,
   CHARGE,
@@ -38,6 +43,7 @@ class PurchasePage {
         `;
   }
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     this.$target.innerHTML = `
         <div id="charge-input-container">
@@ -122,6 +128,7 @@ class PurchasePage {
     `;
   }
 
+  // eslint-disable-next-line max-lines-per-function
   selectDOM() {
     this.$chargeInputContainer = $('#charge-input-container');
     this.$chargeInput = $(`#${CHARGE.INPUT}`);
@@ -141,6 +148,7 @@ class PurchasePage {
     this.$coin10Amount = $(`#${QUANTITY_OF_COIN[10]}`);
   }
 
+  // eslint-disable-next-line max-lines-per-function
   bindEvent() {
     this.$chargeInputContainer.addEventListener(
       'submit',
@@ -160,11 +168,10 @@ class PurchasePage {
 
   onSubmitChargeInput(event) {
     event.preventDefault();
-
     const inputValue = Number(this.$chargeInput.value);
 
-    if (!(inputValue >= 10 && inputValue <= 50000)) {
-      window.alert('금액은 10원 이상 50000원 이하여야 합니다.');
+    if (!isValidMoneyInput(inputValue)) {
+      window.alert('충점 금액은 10원 이상 50000원 이하 여야합니다.');
 
       return;
     }
@@ -177,12 +184,17 @@ class PurchasePage {
 
   onClickPurchaseButton(event) {
     if (!event.target.dataset.itemName) return;
-
     const { itemName } = event.target.dataset;
+    const targetProduct = this.vendingMachine.products.find(
+      (product) => product.name === itemName
+    );
+    if (this.vendingMachine.chargedMoney < targetProduct.price) {
+      window.alert('잔액이 부족합니다.');
 
-    this.vendingMachine.purchase(itemName);
+      return;
+    }
+    this.vendingMachine.purchase(targetProduct);
     this.$chargeAmountText.textContent = this.vendingMachine.chargedMoney;
-
     this.renderPurchasedItem();
   }
 
