@@ -1,6 +1,7 @@
 import { MENU } from '../constant.js';
 import VendingMachine from '../model/VendingMachine.js';
 import { $ } from '../utils/index.js';
+import ManagePage from './ManagePage.js';
 import PurchasePage from './PurchasePage.js';
 
 const vendingMachine = new VendingMachine();
@@ -41,11 +42,16 @@ class App {
 
   mount() {
     this.$purchasePage = new PurchasePage(this.$main, { vendingMachine });
+    this.$managePage = new ManagePage(this.$main, { vendingMachine });
   }
 
   bindEvent() {
     this.$productPurchaseMenuButton.addEventListener('click', () => {
       this.$purchasePage.setup();
+    });
+
+    this.$productManageMenuButton.addEventListener('click', () => {
+      this.$managePage.setup();
     });
   }
 }

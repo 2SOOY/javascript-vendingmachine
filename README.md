@@ -26,7 +26,7 @@
 
 - [x] 사용자는 반환 요청 버튼을 누르는 경우 잔돈이 반환된다.
 - [x] 잔돈 반환시 충전 금액은 0원으로 초기화된다.
-- [ ] 잔돈 반환시 구매 현황은 초기화된다.
+- [x] 잔돈 반환시 구매 현황은 초기화된다.
 - [x] 잔돈 반환은 다음과 같은 규칙으로 반환된다.
   - [x] 동전은 500원, 100원, 50원, 10원이 있다.
   - [x] 각각의 동전은 무한대로 존재한다. (반환에 실패하는 경우는 없다.)
@@ -44,7 +44,7 @@
 
 **상품 조회**
 
-- [ ] 최초 상품 목록은 다음과 같은 형식으로 주어진다.
+- [x] 최초 상품 목록은 다음과 같은 형식으로 주어진다.
 
   ```tsx
   // data.js
@@ -85,38 +85,37 @@
 **메뉴 버튼**
 
     - [x]  상품 구매 button 태그는 `product-purchase-menu`  id값을 가진다.
-    - [ ]  상품 관리 button 태그는 `product-manage-menu` id값을 가진다.
+    - [x]  상품 관리 button 태그는 `product-manage-menu` id값을 가진다.
 
 **금액 충전**
 
-    - [ ]  금액 충전 input 태그는 `charge-input` id값을 가진다.
-    - [ ]  금액 충전 button태그는 `charge-button` id값을 가진다.
-    - [ ]  충전 금액 span 태그는 `charge-amount` id값을 가진다.
+    - [x]  금액 충전 input 태그는 `charge-input` id값을 가진다.
+    - [x]  금액 충전 button태그는 `charge-button` id값을 가진다.
+    - [x]  충전 금액 span 태그는 `charge-amount` id값을 가진다.
 
 **상품 구매**
 
-    - [ ]  상품 구매 상품 이름 td태그는 `product-purchase-name` class를 가진다.
-    - [ ]  상품 구매 상품 가격 td태그는 `product-purchase-price` class를 가진다.
-    - [ ]  상품 구매하기 button 태그는  `purchase-button` class를 가진다.
+    - [x]  상품 구매 상품 이름 td태그는 `product-purchase-name` class를 가진다.
+    - [x]  상품 구매 상품 가격 td태그는 `product-purchase-price` class를 가진다.
+    - [x]  상품 구매하기 button 태그는  `purchase-button` class를 가진다.
 
-    - [ ]  구매 현황의 상품목록 태그는 `purchased-item` class 값을 가진다.
-    - [ ]  반환하기 button 태그는 `coin-return-button` id값을 가진다.
-
-    - [ ]  잔돈 500원 수량 태그는 `coin-500-quantity` id값을 가진다.
-    - [ ]  잔돈 100원 수량 태그는 `coin-100-quantity` id값을 가진다.
-    - [ ]  잔돈 50원 수량 태그는 `coin-50-quantity` id값을 가진다.
-    - [ ]  잔돈 10원 수량 태그는 `coin-10-quantity` id값을 가진다.
+    - [x]  구매 현황의 상품목록 태그는 `purchased-item` class 값을 가진다.
+    - [x]  반환하기 button 태그는 `coin-return-button` id값을 가진다.
+    - [x]  잔돈 500원 수량 태그는 `coin-500-quantity` id값을 가진다.
+    - [x]  잔돈 100원 수량 태그는 `coin-100-quantity` id값을 가진다.
+    - [x]  잔돈 50원 수량 태그는 `coin-50-quantity` id값을 가진다.
+    - [x]  잔돈 10원 수량 태그는 `coin-10-quantity` id값을 가진다.
 
 **상품 관리**
 
-    - [ ]  상품 추가 이름 input 태그는 `product-name-input` id값을 가진다.
-    - [ ]  상품 추가 가격 input 태그는 `product-price-input` id값을 가진다.
-    - [ ]  상품 추가 button 태그는 `product-add-button` id값을 가진다.
-    - [ ]  상품 목록 이름 태그는 `product-manage-name` class값을 가진다.
-    - [ ]  상품 목록 가격 태그는 `product-manage-price` class값을 가진다.
-    - [ ]  상품 목록 삭제 버튼 button 태그는 `delete-button` class값을 가진다.
+    - [x]  상품 추가 이름 input 태그는 `product-name-input` id값을 가진다.
+    - [x]  상품 추가 가격 input 태그는 `product-price-input` id값을 가진다.
+    - [x]  상품 추가 button 태그는 `product-add-button` id값을 가진다.
+    - [x]  상품 목록 이름 태그는 `product-manage-name` class값을 가진다.
+    - [x]  상품 목록 가격 태그는 `product-manage-price` class값을 가진다.
+    - [x]  상품 목록 삭제 버튼 button 태그는 `delete-button` class값을 가진다.
 
 **기타 요구 사항**
 
 - [ ] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 상품 목록을 불러올 수 있도록 한다.
-- [ ] data속성을 활용하여 html 태그에 상품의 유일한 데이터 값들을 관리한다. (e.g. 상품 가격/상품 이름)
+- [x] data속성을 활용하여 html 태그에 상품의 유일한 데이터 값들을 관리한다. (e.g. 상품 가격/상품 이름)

@@ -102,6 +102,8 @@ class VendingMachine {
       return;
     }
 
+    if (!window.confirm('정말로 삭제하시겠습니까?')) return;
+
     this.products.splice(targetIndex, 1);
   }
 }

@@ -20,6 +20,22 @@ class PurchasePage {
     this.render();
     this.selectDOM();
     this.bindEvent();
+    this.renderPurchasedItem();
+  }
+
+  renderPurchasedItem() {
+    this.$purchasedItemList.innerHTML = `
+        ${Object.keys(this.vendingMachine.order)
+          .map((name) => {
+            return `
+              <li class="${PURCHASED_PRODUCT}">
+                <span>${name}</span>
+                <span>${this.vendingMachine.order[name]}개</span>
+            </li>
+              `;
+          })
+          .join('')}
+        `;
   }
 
   render() {
@@ -155,6 +171,7 @@ class PurchasePage {
 
     this.vendingMachine.input(inputValue);
 
+    this.$chargeInput.value = '';
     this.$chargeAmountText.textContent = this.vendingMachine.chargedMoney;
   }
 
@@ -180,21 +197,6 @@ class PurchasePage {
     this.$coin100Amount.textContent = result[100];
     this.$coin50Amount.textContent = result[50];
     this.$coin10Amount.textContent = result[10];
-  }
-
-  renderPurchasedItem() {
-    this.$purchasedItemList.innerHTML = `
-        ${Object.keys(this.vendingMachine.order)
-          .map((name) => {
-            return `
-              <li class="${PURCHASED_PRODUCT}">
-                <span>${name}</span>
-                <span>${this.vendingMachine.order[name]}개</span>
-            </li>
-              `;
-          })
-          .join('')}
-        `;
   }
 }
 
