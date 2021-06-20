@@ -12,7 +12,7 @@ const CHARGE = {
 const PURCHASE = {
   NAME: 'product-purchase-name',
   PRICE: 'product-purchase-price',
-  BUTTON: 'product-button',
+  BUTTON: 'purchase-button',
 };
 
 const PURCHASED_PRODUCT = 'purchased-item';
