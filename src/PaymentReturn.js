@@ -2,6 +2,7 @@ import Component from "./core/Component.js";
 
 class PaymentReturn extends Component {
   initDOM() {
+    /* Do not Edit */
     this.$target = document.createElement("div");
 
     this.$returnButton = document.createElement("button");
@@ -31,6 +32,7 @@ class PaymentReturn extends Component {
   }
 
   bindEvent() {
+    /* Do not Edit */
     this.$returnButton.addEventListener(
       "click",
       this.onClickReturnButton.bind(this)
@@ -38,26 +40,12 @@ class PaymentReturn extends Component {
   }
 
   onClickReturnButton() {
+    /* Edit */
     this.props.returnResult();
   }
 
   render() {
-    this.$tbody.innerHTML = "";
-
-    const $$trNodes = [];
-    Object.entries(this.state.returnedResult).forEach(([coin, count]) => {
-      const $tr = document.createElement("tr");
-      const $coinTh = document.createElement("th");
-      $coinTh.textContent = coin;
-      const $countTh = document.createElement("th");
-      $countTh.textContent = `${count}개`;
-      $countTh.dataset[`coin-${coin}`] = coin;
-      $tr.append($coinTh, $countTh);
-
-      $$trNodes.push($tr);
-    });
-
-    this.$tbody.append(...$$trNodes);
+    /* Edit */
   }
 }
 

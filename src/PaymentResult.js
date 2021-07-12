@@ -14,6 +14,7 @@ const createProductNode = ({ name, price }) => {
 
 class PaymentResult extends Component {
   initDOM() {
+    /* Do not Edit */
     this.$target = document.createElement("section");
     this.$title = document.createElement("h2");
     this.$title.textContent = "구매 내역";
@@ -24,16 +25,7 @@ class PaymentResult extends Component {
   }
 
   render() {
-    this.$productList.innerHTML = "";
-
-    const $$products = [];
-    this.state.purchasedProducts.forEach((product) => {
-      const $product = createProductNode(product);
-
-      $$products.push($product);
-    });
-
-    this.$productList.append(...$$products);
+    /* Edit */
   }
 }
 

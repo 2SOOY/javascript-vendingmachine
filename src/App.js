@@ -5,6 +5,7 @@ import PaymentReturn from "./PaymentReturn.js";
 import ProductList from "./ProductList.js";
 
 const initialState = {
+  /* Do not Edit */
   amount: 0,
   products: [
     { name: "코카콜라", price: 1700 },
@@ -23,7 +24,7 @@ const initialState = {
 
 class App {
   constructor($target) {
-    /* Do not fix */
+    /* Do not Edit */
     this.$target = $target;
     this.state = initialState;
 
@@ -35,39 +36,7 @@ class App {
   }
 
   mountChildComponent() {
-    this.paymentAmount = new PaymentAmount(
-      this.$target,
-      {},
-      {
-        amount: this.state.amount,
-      }
-    );
-    this.paymentInputForm = new PaymentInputForm(this.$target, {
-      chargeAmount: this.chargeAmount.bind(this),
-    });
-    this.productList = new ProductList(
-      this.$target,
-      {
-        buyProduct: this.buyProduct.bind(this),
-      },
-      {
-        products: this.state.products,
-      }
-    );
-    this.paymentResult = new PaymentResult(
-      this.$target,
-      {},
-      { purchasedProducts: this.state.purchasedProducts }
-    );
-    this.paymentReturn = new PaymentReturn(
-      this.$target,
-      {
-        returnResult: this.returnResult.bind(this),
-      },
-      {
-        returnedResult: this.state.returnedResult,
-      }
-    );
+    /* Edit */
   }
 
   setState(state) {
@@ -85,40 +54,19 @@ class App {
   }
 
   addPurchasedProducts(product) {
-    const newPurchasedProducts = [...this.state.purchasedProducts, product];
-    this.state = { ...this.state, purchasedProducts: newPurchasedProducts };
-    this.paymentResult.setState({
-      purchasedProducts: this.state.purchasedProducts,
-    });
+    /* Edit */
   }
 
   chargeAmount(amount) {
-    this.setAmount(this.state.amount + Number(amount));
+    /* Edit */
   }
 
   buyProduct(product) {
-    if (this.state.amount - product.price < 0) {
-      alert("잔액이 부족합니다.");
-
-      return;
-    }
-    this.setAmount(this.state.amount - product.price);
-    this.addPurchasedProducts(product);
+    /* Edit */
   }
 
   returnResult() {
-    const newReturnedResult = { ...initialState.returnedResult };
-    let amount = this.state.amount;
-
-    this.state.returnableCoins.forEach((coin) => {
-      newReturnedResult[coin] = Math.floor(amount / coin);
-      amount %= coin;
-    });
-
-    this.setAmount(0);
-    this.setReturnedResult(newReturnedResult);
-
-    alert("잔돈이 반환되었습니다.");
+    /* Edit */
   }
 }
 

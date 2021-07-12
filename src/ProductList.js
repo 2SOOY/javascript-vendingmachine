@@ -1,10 +1,10 @@
 import Component from "./core/Component.js";
 
 const createProductNode = ({ name, price }) => {
-  /* Do not fix */
-  const $productWrapper = document.createElement("li");
-  $productWrapper.dataset.name = name;
-  $productWrapper.dataset.price = price;
+  /* Do not Edit */
+  const $product = document.createElement("li");
+  $product.dataset.name = name;
+  $product.dataset.price = price;
 
   const $name = document.createElement("span");
   $name.textContent = name;
@@ -16,42 +16,28 @@ const createProductNode = ({ name, price }) => {
   $purchaseButton.type = "button";
   $purchaseButton.textContent = "구매";
 
-  $productWrapper.append(
-    $name,
-    document.createElement("br"),
-    $price,
-    $purchaseButton
-  );
+  $product.append($name, document.createElement("br"), $price, $purchaseButton);
 
-  return $productWrapper;
+  return $product;
 };
 
 class ProductList extends Component {
   initDOM() {
-    /* Do not fix */
+    /* Do not Edit */
     this.$target = document.createElement("ul");
-
     this.$parent.appendChild(this.$target);
   }
 
   bindEvent() {
-    /* Do not fix */
+    /* Do not Edit */
     this.$target.addEventListener(
       "click",
       this.onClickPurchaseButton.bind(this)
     );
   }
 
-  // "버튼"을 클릭했을때 동작해야 합니다.
   onClickPurchaseButton(event) {
-    if (event.target.tagName !== "BUTTON") return;
-
-    if (!confirm("정말로 구매하시겠습니까?")) return;
-
-    const $li = event.target.closest("li");
-    const { name, price } = $li.dataset;
-
-    this.props.buyProduct({ name, price });
+    /* Edit */
   }
 
   render() {

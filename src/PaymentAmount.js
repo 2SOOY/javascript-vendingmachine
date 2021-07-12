@@ -1,9 +1,8 @@
 import Component from "./core/Component.js";
 
-// private, protected 문법 사용금지
 class PaymentAmount extends Component {
   initDOM() {
-    /* Do not fix */
+    /* Do not Edit */
     this.$target = document.createElement("div");
     this.$text = document.createElement("span");
     this.$text.textContent = "현재금액: ";
@@ -15,6 +14,7 @@ class PaymentAmount extends Component {
   }
 
   render() {
+    /* Do not Edit */
     this.$amount.textContent = `${this.state.amount}원`;
   }
 }
