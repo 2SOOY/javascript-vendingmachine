@@ -37,6 +37,33 @@ class App {
 
   mountChildComponent() {
     /* Edit */
+    this.paymentAmount = new PaymentAmount(this.$target, null, {
+      amount: this.state.amount,
+    });
+    this.paymentInputForm = new PaymentInputForm(
+      this.$target,
+      { chargeAmount: this.chargeAmount.bind(this) },
+      this.state,
+    );
+    this.productList = new ProductList(
+      this.$target,
+      {
+        buyProduct: this.buyProduct.bind(this),
+      },
+      {
+        products: this.state.products,
+      },
+    );
+    this.paymentReturn = new PaymentReturn(this.$target, {
+      returnResult: this.returnResult.bind(this),
+    });
+    this.paymentResult = new PaymentResult(
+      this.$target,
+      {},
+      {
+        purchasedProducts: this.state.purchasedProducts,
+      },
+    );
   }
 
   setState(state) {
@@ -53,16 +80,33 @@ class App {
     this.paymentReturn.setState({ returnedResult });
   }
 
+  setPurchasedProducts(purchasedProducts) {
+    this.state = { ...this.state, purchasedProducts: [...purchasedProducts] };
+    this.paymentResult.setState({ purchasedProducts });
+  }
+
   addPurchasedProducts(product) {
     /* Edit */
+    const newPurchasedProducts = this.state.purchasedProducts.concat(product);
+    this.setPurchasedProducts(newPurchasedProducts);
   }
 
   chargeAmount(amount) {
     /* Edit */
+    const newAmount = this.state.amount + amount;
+    this.setAmount(newAmount);
   }
 
   buyProduct(product) {
     /* Edit */
+    const { price } = product;
+
+    if (this.state.amount - price >= 0) {
+      this.setAmount(this.state.amount - price);
+      this.addPurchasedProducts(product);
+    } else {
+      alert("구매 불가");
+    }
   }
 
   returnResult() {

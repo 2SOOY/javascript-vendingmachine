@@ -26,6 +26,11 @@ class PaymentResult extends Component {
 
   render() {
     /* Edit */
+    this.$productList.innerHTML = "";
+    const $purchasedProducts = this.state.purchasedProducts.map((product) =>
+      createProductNode(product),
+    );
+    this.$productList.append(...$purchasedProducts);
   }
 }
 

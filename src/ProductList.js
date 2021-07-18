@@ -32,12 +32,19 @@ class ProductList extends Component {
     /* Do not Edit */
     this.$target.addEventListener(
       "click",
-      this.onClickPurchaseButton.bind(this)
+      this.onClickPurchaseButton.bind(this),
     );
   }
 
   onClickPurchaseButton(event) {
     /* Edit */
+    const $product = event.target.closest("li");
+    const product = {
+      name: $product.dataset.name,
+      price: Number($product.dataset.price),
+    };
+
+    this.props.buyProduct(product);
   }
 
   render() {

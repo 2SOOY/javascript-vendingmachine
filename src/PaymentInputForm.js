@@ -17,12 +17,22 @@ class PaymentInputForm extends Component {
     /* Do not Edit */
     this.$target.addEventListener(
       "submit",
-      this.onChargePaymentAmount.bind(this)
+      this.onChargePaymentAmount.bind(this),
     );
   }
 
   onChargePaymentAmount(event) {
     /* Edit */
+    event.preventDefault();
+    const amount = Number(this.$amountInput.value);
+    if (isNaN(amount) || amount < 0) {
+      alert("충전 불가");
+      this.$amountInput.value = "";
+      return;
+    }
+
+    this.props.chargeAmount(amount);
+    this.$amountInput.value = "";
   }
 }
 
