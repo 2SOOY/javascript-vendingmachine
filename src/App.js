@@ -54,9 +54,15 @@ class App {
         products: this.state.products,
       },
     );
-    this.paymentReturn = new PaymentReturn(this.$target, {
-      returnResult: this.returnResult.bind(this),
-    });
+    this.paymentReturn = new PaymentReturn(
+      this.$target,
+      {
+        returnResult: this.returnResult.bind(this),
+      },
+      {
+        returnedResult: this.state.returnedResult,
+      },
+    );
     this.paymentResult = new PaymentResult(
       this.$target,
       {},
@@ -111,6 +117,22 @@ class App {
 
   returnResult() {
     /* Edit */
+    let amount = this.state.amount;
+
+    const returnedResult = this.state.returnableCoins.reduce((acc, coin) => {
+      const count = Math.floor(amount / coin);
+      amount -= coin * count;
+
+      return {
+        ...acc,
+        [coin]: count,
+      };
+    }, {});
+
+    amount = 0;
+
+    this.setReturnedResult(returnedResult);
+    this.setAmount(amount);
   }
 }
 

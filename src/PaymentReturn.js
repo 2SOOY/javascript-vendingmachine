@@ -1,5 +1,18 @@
 import Component from "./core/Component.js";
 
+const createCoinRow = (coin, count) => {
+  /* Add */
+  const $tr = document.createElement("tr");
+  const $coinTd = document.createElement("td");
+  $coinTd.textContent = `${coin}원`;
+  const $countTd = document.createElement("td");
+  $countTd.textContent = `${count}개`;
+  $countTd.dataset[`coin-${coin}`] = count;
+
+  $tr.append($coinTd, $countTd);
+
+  return $tr;
+};
 class PaymentReturn extends Component {
   initDOM() {
     /* Do not Edit */
@@ -35,7 +48,7 @@ class PaymentReturn extends Component {
     /* Do not Edit */
     this.$returnButton.addEventListener(
       "click",
-      this.onClickReturnButton.bind(this)
+      this.onClickReturnButton.bind(this),
     );
   }
 
@@ -46,6 +59,15 @@ class PaymentReturn extends Component {
 
   render() {
     /* Edit */
+    this.$tbody.innerHTML = "";
+
+    const $coins = Object.entries(this.state.returnedResult).map(
+      ([coin, count]) => {
+        return createCoinRow(coin, count);
+      },
+    );
+
+    this.$tbody.append(...$coins);
   }
 }
 
