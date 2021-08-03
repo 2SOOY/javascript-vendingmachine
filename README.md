@@ -81,6 +81,7 @@
 - 사용자는 한 번에 한 가지의 상품만 구매할 수 있다.
 - 사용자는 자신의 충전 금액보다 높은 금액의 상품을 구매할 수 없다.
 - 사용자는 상품 목록들 중 특정 상품의 `구매 버튼`을 클릭하여 구매할 수 있다.
+  - 각 상품의 구매 버튼에 해당하는 button의 class명은 `purchase-button`이다.
   - 각 상품 목록의 이름에 해당하는 td의 class명은 `product-purchase-name`이다.
   - 각 상품 목록의 가격에 해당하는 td의 class명은 `product-purchase-price`이다.
   - 각 상품 목록의 수량에 해당하는 td의 class명은 `product-purchase-quantity`이다.
