@@ -1,0 +1,11 @@
+{
+  "name": "javascript-vendingmachine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/2SOOY/javascript-vendingmachine.git",
+  "author": "2sooy <1401660@naver.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^8.1.0"
+  }
+}
