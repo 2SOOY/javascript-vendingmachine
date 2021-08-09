@@ -16,10 +16,14 @@ class VendingMachine {
     let cur = amount;
     const coins = { ...this.coins };
 
-    while (cur) {
+    while (cur > 0) {
       const coin = this.pickCoin();
-      coins[coin] += 1;
 
+      if (coin > cur) {
+        continue;
+      }
+
+      coins[coin] += 1;
       cur -= coin;
     }
 
