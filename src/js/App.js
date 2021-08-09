@@ -4,12 +4,14 @@ import ProductManage from "./ProductManage.js";
 import CoinManage from "./CoinManage.js";
 import Router from "./Router.js";
 import VendingMachine from "./vendingMachine.js";
+import ProductManager from "./productManager.js";
 import { $ } from "./utils/dom.js";
 
 class App {
   constructor() {
     this.$target = $("#app");
     this.vendingMachine = new VendingMachine();
+    this.productManager = new ProductManager();
   }
 
   init() {
@@ -36,8 +38,16 @@ class App {
       changePage: this.changePage.bind(this),
     });
 
-    this.productManage = new ProductManage(this.$container, this.vendingMachine);
-    this.productPurchase = new ProductPurchase(this.$container, this.vendingMachine);
+    this.productManage = new ProductManage(
+      this.$container,
+      this.vendingMachine,
+      this.productManager
+    );
+    this.productPurchase = new ProductPurchase(
+      this.$container,
+      this.vendingMachine,
+      this.productManager
+    );
     this.coinManage = new CoinManage(this.$container, this.vendingMachine);
 
     this.router = new Router({
