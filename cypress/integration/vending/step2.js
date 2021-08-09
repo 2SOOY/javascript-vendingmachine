@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import Random from "../../../src/lib/random";
+import Random from "../../../src/js/lib/random";
 import { CHANGE } from "../../fixtures/dom";
 import { PURCHASE } from "../../fixtures/dom";
 import { CHARGE, MENU, VENDING } from "../../fixtures/dom";
@@ -26,7 +26,7 @@ context("STEP2", () => {
     cy.get(VENDING.CHARGE_BUTTON).click();
 
     cy.get(VENDING.COIN_500).should("be.gte", 0);
-    cy.get(VENDING.COIN_500).should("be.lte", 10);
+    cy.get(VENDING.COIN_500).should("be.lte", 2);
   });
 
   it("자판기가 보유할 금액에 해당하는 input에 1000원을 입력 후 충전하기 버튼을 누른 경우 100원의 개수는 0 ~ 10개 사이여야한다.", () => {
