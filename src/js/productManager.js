@@ -5,6 +5,10 @@ class ProductManager {
     this.products = products;
   }
 
+  getProducts() {
+    return this.products;
+  }
+
   addProduct(product) {
     const products = this.products.map((p) => (p.name === product.name ? product : p));
 
