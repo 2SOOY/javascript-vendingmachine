@@ -38,11 +38,7 @@ class App {
       changePage: this.changePage.bind(this),
     });
 
-    this.productManage = new ProductManage(
-      this.$container,
-      this.vendingMachine,
-      this.productManager
-    );
+    this.productManage = new ProductManage(this.$container, this.productManager);
     this.productPurchase = new ProductPurchase(
       this.$container,
       this.vendingMachine,

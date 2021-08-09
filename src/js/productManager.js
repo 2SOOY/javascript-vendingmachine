@@ -10,9 +10,12 @@ class ProductManager {
   }
 
   addProduct(product) {
-    const products = this.products.map((p) => (p.name === product.name ? product : p));
-
-    this.products = products;
+    const existedProduct = this.products.find((p) => p.name === product.name);
+    if (existedProduct) {
+      this.products = this.products.map((p) => (p.name === product.name ? product : p));
+    } else {
+      this.products = [...this.products, product];
+    }
   }
 
   purchaseProduct(name, quantity) {
