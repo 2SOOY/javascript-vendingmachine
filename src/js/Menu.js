@@ -1,9 +1,9 @@
 import { $, createElement } from "./utils/dom.js";
 
 const menuItemsTemplate = `
-  <button id="vending-machine-manage-menu">돈통</button>
+  <button id="vending-machine-manage-menu">잔돈 충전</button>
   <button id="product-purchase-menu">상품 구매</button>
-  <button id="product-manage-menu">상품 추가</button>
+  <button id="product-manage-menu">상품 관리</button>
 `;
 
 class Menu {

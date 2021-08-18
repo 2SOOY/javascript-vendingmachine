@@ -30,18 +30,22 @@ class VendingMachine {
     this.coins = coins;
   }
 
+  getSumCoins(coins) {
+    return Object.entries(coins).reduce((total, [coin, count]) => (total += coin * count), 0);
+  }
+
   getTotalMoney() {
-    let result = 0;
-
-    for (const [coin, count] of Object.entries(this.coins)) {
-      result += coin * count;
-    }
-
-    return result;
+    return this.getSumCoins(this.coins);
   }
 
   returnCoin(money) {
     let remain = money;
+
+    if (this.getTotalMoney() === 0) {
+      throw new Error(
+        "자판기가 보유한 동전이 없어 반환이 불가능합니다. 관리자에게 문의 부탁드립니다."
+      );
+    }
 
     const returnedCoins = this.coinTypes.reduce((result, coin) => {
       const maxCount = Math.floor(remain / coin);
@@ -51,10 +55,6 @@ class VendingMachine {
       remain -= curCount * coin;
       return { ...result, [coin]: curCount };
     }, {});
-
-    if (remain > 0) {
-      throw new Error("자판기 내 잔돈이 부족합니다.");
-    }
 
     return returnedCoins;
   }

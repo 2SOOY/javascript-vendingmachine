@@ -1,4 +1,4 @@
-import { $ } from "./utils/dom.js";
+import { $ } from "../utils/dom.js";
 
 class CoinManage {
   constructor($parent, vendingMachine) {
@@ -50,6 +50,7 @@ class CoinManage {
 
   mountTemplate() {
     this.$parent.innerHTML = `
+      ${titleTemplate}
       ${chargeMoneyFormTemplate}
       ${chargeMoneyResultTemplate}
       ${changeResultTableTemplate}
@@ -75,8 +76,7 @@ class CoinManage {
     const money = Number(value.trim());
 
     if (money % 10 !== 0) {
-      // if 사용자가 html에 step 속성을 지정했다면 alert에 대한 테스트하는 방법
-      alert("잔돈은 500, 100, 50, 10원의 배수로만 충전이 가능합니다.");
+      alert("잔돈은 10원의 배수로만 충전이 가능합니다.");
       this.$chargeMoneyInput.value = "";
       return;
     }
@@ -85,9 +85,11 @@ class CoinManage {
   }
 }
 
+const titleTemplate = `<h2>[잔돈 충전]</h2>`;
+
 const chargeMoneyFormTemplate = `
   <form id="vending-machine-charge-money-form">
-    <h3>충전 하기</h3>
+    <h3>자판기 보유 동전 충전하기</h3>
     <input id="vending-machine-charge-input" placeholder="동전으로 변환할 금액을 입력해주세요." />
     <button id="vending-machine-charge-button">충전하기</button>
   </form>

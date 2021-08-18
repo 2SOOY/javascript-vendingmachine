@@ -1,4 +1,4 @@
-import { $ } from "./utils/dom.js";
+import { $ } from "../utils/dom.js";
 
 class ProductManage {
   constructor($parent, productManager) {
@@ -89,7 +89,7 @@ class ProductManage {
 }
 
 const titleTemplate = `
-  <h2>상품관리</h2>
+  <h2>[상품 관리]</h2>
 `;
 
 const productAddFormTemplate = `

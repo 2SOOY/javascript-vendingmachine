@@ -1,4 +1,4 @@
-import { $ } from "./utils/dom.js";
+import { $ } from "../utils/dom.js";
 
 class ProductPurchase {
   constructor($parent, vendingMachine, productManager) {
@@ -16,10 +16,10 @@ class ProductPurchase {
 
   mountTemplate() {
     this.$parent.innerHTML = `
+      ${titleTemplate}
       ${chargeMoneyFormTemplate}
       ${chargeMoneyResultTemplate}
       ${productPurchaseTableTemplate}
-      ${purchaseResultListTemplate}
       ${changeResultTableTemplate}
     `;
   }
@@ -99,7 +99,7 @@ class ProductPurchase {
 
   setOrderedProducts(orderedProducts) {
     this.orderedProducts = orderedProducts;
-    this.renderOrderedProducts();
+    // this.renderOrderedProducts();
   }
 
   renderOrderedProducts() {
@@ -108,7 +108,7 @@ class ProductPurchase {
         ({ name, count }) => `
       <li class="purchased-item">
         <span>${name}</span>
-        <span>${count} 개</span>
+        <span>${count}개</span>
       </li>
     `
       )
@@ -143,7 +143,7 @@ class ProductPurchase {
     const money = Number(input.value);
 
     if (money % 10 !== 0) {
-      alert("상품 구매를 위해서는 500, 100, 50, 10원 단위의 금액만 가능합니다.");
+      alert("상품 구매를 10원 단위의 금액만 가능합니다.");
       this.$chargeMoneyInput.value = "";
       return;
     }
@@ -189,15 +189,22 @@ class ProductPurchase {
     try {
       const coins = this.vendingMachine.returnCoin(this.money);
 
-      this.setMoney(0);
+      this.setMoney(this.money - this.vendingMachine.getSumCoins(coins));
       this.setCoins(coins);
       this.setOrderedProducts([]);
     } catch (err) {
+      this.setCoins({
+        500: 0,
+        100: 0,
+        50: 0,
+        10: 0,
+      });
       alert(err.message);
-      return;
     }
   }
 }
+
+const titleTemplate = `<h2>[상품 구매]</h2>`;
 
 const chargeMoneyFormTemplate = `
   <form id="charge-money-form">
