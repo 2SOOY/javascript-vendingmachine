@@ -72,7 +72,7 @@ class ProductPurchase {
 
   renderMoney() {
     this.$chargeMoneyInput.value = "";
-    this.$chargeAmount.textContent = `${this.money} 원`;
+    this.$chargeAmount.textContent = `${this.money}원`;
   }
 
   setProducts(products) {
@@ -217,7 +217,7 @@ const chargeMoneyFormTemplate = `
 const chargeMoneyResultTemplate = `
   <div>
     <span>충전 금액: </span>
-    <span id="charge-amount">0 원</span>
+    <span id="charge-amount">0원</span>
   </div>
 `;
 
