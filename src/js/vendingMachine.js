@@ -1,5 +1,3 @@
-import Random from "./lib/random.js";
-
 class VendingMachine {
   constructor() {
     this.coinTypes = [500, 100, 50, 10];
@@ -9,7 +7,7 @@ class VendingMachine {
   }
 
   pickCoin() {
-    return Random.pick([500, 100, 50, 10]);
+    return WoowaUtil.Random.pickOneInArray([500, 100, 50, 10]);
   }
 
   chargeMoney(amount) {

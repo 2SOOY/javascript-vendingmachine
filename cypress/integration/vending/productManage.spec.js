@@ -11,6 +11,17 @@ context("상품 관리", () => {
     cy.on("window:alert", spy);
   });
 
+  it("정상적인 상품명, 수량, 금액을 입력한 후 추가하기 버튼을 누르면 상품 목록에 입력한 상품이 추가된다..", () => {
+    cy.get(MANAGE.ADD_NAME).type("상품1");
+    cy.get(MANAGE.ADD_PRICE).type(1000);
+    cy.get(MANAGE.ADD_QUANTITY).type(50);
+    cy.get(MANAGE.ADD_BUTTON).click();
+
+    cy.get(MANAGE.PRODUCT_NAME).last().should("have.text", "상품1");
+    cy.get(MANAGE.PRODUCT_PRICE).last().should("have.text", "1000원");
+    cy.get(MANAGE.PRODUCT_QUANTITY).last().should("have.text", "50개");
+  });
+
   it("상품명, 수량, 금액 중 하나의 값이라도 입력하지 않는다면 alert을 띄운다. - 수량 미입력", () => {
     cy.get(MANAGE.ADD_NAME).type("상품1");
     cy.get(MANAGE.ADD_PRICE).type(750);

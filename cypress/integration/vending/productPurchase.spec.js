@@ -11,6 +11,22 @@ context("상품 구매", () => {
     cy.on("window:alert", spy);
   });
 
+  it("충전 금액에 해당하는 input에 10의 배수가 아닌 값을 입력한 후 충전하기 버튼을 누른 경우 alert을 띄운다.", () => {
+    cy.get(CHARGE.INPUT).type(1111);
+    cy.get(CHARGE.BUTTON).click();
+
+    cy.get("@alert").should("have.been.called");
+  });
+
+  it("충전 금액 500원 충전하기, 1000원 충전하기를 누르면 충전 금액이 1500원이 된다.", () => {
+    cy.get(CHARGE.INPUT).type(500);
+    cy.get(CHARGE.BUTTON).click();
+    cy.get(CHARGE.INPUT).type(1000);
+    cy.get(CHARGE.BUTTON).click();
+
+    cy.get(CHARGE.SPAN).last().should("have.text", "1500원");
+  });
+
   it("금액을 충전하여 상품 구매에 성공한 잔액이 구매한 금액만큼 감소한다.", () => {
     cy.get(MENU.MANAGE).click();
     cy.get(MANAGE.ADD_NAME).type("신상품");
